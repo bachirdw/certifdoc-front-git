@@ -1,0 +1,48 @@
+<div class="register-container">
+  <div class="register-header">
+    <h1>BACHIR DIAW</h1>
+    <h2>The BEST Software EDM is here.</h2>
+    <p>Plus en savoir >></p>
+  </div>
+
+  <div class="welcome-message">
+    <h3>Welcome</h3>
+    <p>Register to Get Started</p>
+  </div>
+
+  <!-- Formulaire simple avec ngModel, comme pour le login -->
+  <form (ngSubmit)="onRegisterSubmit()" class="register-form" novalidate autocomplete="on">
+    <div class="form-group">
+      <label for="firstname">Prénom</label>
+      <input type="text" id="firstname" [(ngModel)]="firstname" name="firstname" required>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Nom</label>
+      <input type="text" id="lastname" [(ngModel)]="lastname" name="lastname" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="formation">Formation</label>
+        <input type="text" formControlName="formation" id="formation" name="formation" placeholder="Formation">
+      </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+    </div>
+
+    <div class="form-actions">
+        <a routerLink="/register" class="signup-btn">S'inscrire</a>
+        <a routerLink="/login" class="login-btn">Se connecter</a>
+    </div>
+  </form>
+
+  <div class="footer">
+    <p>Developed by Diaw Bachir</p>
+  </div>
+</div>
