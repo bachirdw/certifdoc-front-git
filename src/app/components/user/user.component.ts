@@ -3,7 +3,7 @@ import { UserService } from '../../services/user/user.service';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { User } from '../../models/user';
+import { User } from '../../models/user/user';
 
 @Component({
   selector: 'app-user',

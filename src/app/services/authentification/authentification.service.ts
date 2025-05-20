@@ -2,21 +2,19 @@ import { Injectable } from '@angular/core';
 import { AppSettings } from '../../settings/app.settings';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../../models/user';
+import { User } from '../../models/user/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  
   public host = AppSettings.APP_URL;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
-  public login(user: User): Observable<HttpResponse<User>> {
-    return this.http.post<User>(`${this.host}/api/auth/login`, user, { observe: 'response' });
+  public login(userData: { email: string; password: string }): Observable<HttpResponse<User>> {
+    return this.http.post<User>(`${this.host}/api/auth/login`, userData, { observe: 'response' });
   }
 
   public register(user: User): Observable<User> {
@@ -32,12 +30,12 @@ export class AuthenticationService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  public getUserFromLocalCache(): User {
-    return JSON.parse(localStorage.getItem('user')!);
+  public getUserFromLocalCache(): User | null {
+    const userData = localStorage.getItem('user');
+    return userData ? JSON.parse(userData) : null;
   }
 
   public isUserLoggedIn(): boolean {
-    // Pour l'instant, on retourne juste false pour forcer la connexion à chaque fois
-    return false;
+    return this.getUserFromLocalCache() !== null;
   }
 }

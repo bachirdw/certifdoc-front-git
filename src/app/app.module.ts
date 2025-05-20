@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { UserComponent } from './components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { DocumentComponent } from './components/document/document.component';
 
@@ -24,8 +24,9 @@ import { DocumentComponent } from './components/document/document.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    AppRoutingModule
+    FormsModule,//  Pour ngModel
+    AppRoutingModule,
+    ReactiveFormsModule     // ✅ Pour formControlName
   ],
   providers: [],
   bootstrap: [AppComponent]

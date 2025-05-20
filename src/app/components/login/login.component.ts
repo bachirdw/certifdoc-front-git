@@ -4,8 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../services/authentification/authentification.service';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { User } from '../../models/user';
-import { HttpResponse } from '@angular/common/http';
+import { User } from '../../models/user/user';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 //Page de connexion
 @Component({
@@ -27,32 +27,30 @@ export class LoginComponent implements OnInit, OnDestroy{
   ){}
 
   ngOnInit(): void {
-    if(this.authenticationService.isUserLoggedIn()){
-      this.router.navigateByUrl('/user/management');  
-    } else{
-      this.router.navigateByUrl('/login');
+    if (this.authenticationService.isUserLoggedIn()) {
+      this.router.navigateByUrl('/user/management');
     }
   }
 
   public onLoginSubmit(): void {
-    const user: User = new User();
-    user.email = this.email;
-    user.password = this.password;
-    this.onLogin(user);
+    const userData = { email: this.email, password: this.password };
+    this.onLogin(userData);
   }
 
-  public onLogin(user:User):void {
+  public onLogin(user: { email: string; password: string }): void {
     this.showLoading = true;
+    console.log("Données envoyées :", user);
 
     this.subscriptions.push(
       this.authenticationService.login(user).subscribe({
-        next: (response:HttpResponse<User>) =>{
+        next: (response: HttpResponse<User>) => {
           this.authenticationService.addUserToLocalCache(response.body!);
-          this.router.navigateByUrl('/user/management');
+          this.router.navigateByUrl('/user/document');
           this.showLoading = false;
         },
-        error: () => {
-          this.errorMessage = "Échec de la connexion. Vérifiez vos identifiants.";
+        error: (errorResponse: HttpErrorResponse) => {
+          console.log("Erreur reçue :", errorResponse);
+          this.errorMessage = errorResponse.error.message || "Échec de la connexion. Vérifiez vos identifiants.";
           this.showLoading = false;
         }
       })
@@ -60,8 +58,6 @@ export class LoginComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(
-      sub => sub.unsubscribe()
-    );
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

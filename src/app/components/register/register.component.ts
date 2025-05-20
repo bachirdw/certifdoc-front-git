@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../services/authentification/authentification.service';
-import { User } from '../../models/user';
+import { User } from '../../models/user/user';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public lastname: string = '';
   public email: string = '';
   public password: string = '';
+  public formation: string = '';
 
   constructor(
     private router: Router,
@@ -28,20 +29,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/user/management');
+      this.router.navigateByUrl('/user/document');
     }
   }
 
   public onRegisterSubmit(): void {
-    // Crée un nouvel utilisateur à partir des champs du formulaire
+    // Construction de l'objet User avec un sous-objet formation
     const user: User = new User();
-    user.firstname = this.firstname;
-    user.lastname = this.lastname;
-    user.email = this.email;
-    user.password = this.password;
+user.firstname = this.firstname;
+user.lastname = this.lastname;
+user.email = this.email;
+user.password = this.password;
+user.formationId = Number(this.formation);  // <-- ici, on convertit en nombre
 
     this.onRegister(user);
   }
+  
 
   public onRegister(user: User): void {
     this.showLoading = true;

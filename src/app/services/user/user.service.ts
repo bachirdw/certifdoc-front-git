@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppSettings } from '../../settings/app.settings';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CustomHttpResponse } from '../../models/custom-http-response';import { User } from '../../models/user';
+import { CustomHttpResponse } from '../../models/custom-http-response';import { User } from '../../models/user/user';
 ;
 
 @Injectable({
@@ -60,12 +60,9 @@ export class UserService {
     formData.append('CurrentUsername', loggedInUsername);
     formData.append('firstname', user.firstname);
     formData.append('lastname', user.lastname);
-    formData.append('username', user.username);
     formData.append('email', user.email);
-    formData.append('role', user.role);
     formData.append('profileImage', profileImage);
     formData.append('isActive', JSON.stringify(user.active));
-    formData.append('IsNotLocked', JSON.stringify(user.notLocked));
     
     return formData;
   }

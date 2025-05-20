@@ -4,10 +4,20 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent } // <-- Ajoute cette ligne
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: 'login', redirectTo: 'auth/login', pathMatch: 'full' },      // 👈 Ajout
+  { path: 'register', redirectTo: 'auth/register', pathMatch: 'full' },// 👈 Ajout
+  {
+    path: 'auth',
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  }
 ];
+
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
