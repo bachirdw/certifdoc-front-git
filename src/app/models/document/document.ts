@@ -10,6 +10,8 @@ export class Document {
     fileHash?: string;
     filePath?: string;
     uploadDate?: Date;
+    modifiedBy?: string; 
+    createdBy?: string;    
   
     constructor() {
       this.idDocument = 0;
@@ -23,5 +25,7 @@ export class Document {
       this.fileHash = '';
       this.filePath = '';
       this.uploadDate = new Date();
+      this.modifiedBy = '';
+      this.createdBy = '';
     }
   }

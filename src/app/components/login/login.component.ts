@@ -25,18 +25,18 @@ export class LoginComponent implements OnInit, OnDestroy{
     private router:Router,
     private authenticationService : AuthenticationService,
   ){}
-
+// Initialisation du composant
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/user/management');
+      this.router.navigateByUrl('/document');
     }
   }
-
+// Déclenché lors de la soumission du formulaire de connexion
   public onLoginSubmit(): void {
     const userData = { email: this.email, password: this.password };
     this.onLogin(userData);
   }
-
+// Appel du service d'authentification pour se connecter
   public onLogin(user: { email: string; password: string }): void {
     this.showLoading = true;
     console.log("Données envoyées :", user);
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy{
       this.authenticationService.login(user).subscribe({
         next: (response: HttpResponse<User>) => {
           this.authenticationService.addUserToLocalCache(response.body!);
-          this.router.navigateByUrl('/user/document');
+          this.router.navigateByUrl('/document');
           this.showLoading = false;
         },
         error: (errorResponse: HttpErrorResponse) => {
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy{
       })
     );
   }
-
+// On se désabonne pour éviter les fuites de mémoire
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }

@@ -2,22 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component'; 
 import { RegisterComponent } from './components/register/register.component';
+import { DocumentComponent } from './components/document/document.component';
+
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: 'login', redirectTo: 'auth/login', pathMatch: 'full' },      // 👈 Ajout
-  { path: 'register', redirectTo: 'auth/register', pathMatch: 'full' },// 👈 Ajout
-  {
-    path: 'auth',
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
-    ]
-  }
+  { path: '', redirectTo: '/documents', pathMatch: 'full' },
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/register', component: RegisterComponent },
+  { path: 'documents', component: DocumentComponent },
+
+
 ];
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

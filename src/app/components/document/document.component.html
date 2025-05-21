@@ -1,1 +1,48 @@
-<p>document works!</p>
+<div class="document-container">
+    <!-- Barre de recherche -->
+    <div class="document-header">
+      <h2>Liste des Documents</h2>
+      <input type="text" name="title" [(ngModel)]="document.title" placeholder="Nom du document">
+            <button class="add-button" (click)="openAddForm()">+ Ajouter</button>
+    </div>
+  
+    <!-- Liste des documents -->
+    <table class="document-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nom du document</th>
+          <th>Date de création</th>
+          <th>Modifié par</th>
+          <th>Créé par</th>
+          <th>Version</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of documents">
+          <td>{{ doc.idDocument }}</td>
+          <td>{{ doc.title }}</td>
+          <td>{{ doc.uploadDate | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ doc.modifiedBy }}</td>
+          <td>{{ doc.modifiedBy || 'Non spécifié' }}</td>
+          <td>{{ doc.createdBy || 'Non spécifié' }}</td>
+          <td>
+            <button class="action-button view" (click)="SelectDocument(doc)">Voir</button>
+            <button class="action-button delete" (click)="DeleteDocument(doc.idDocument ? doc.idDocument : 0)">Supprimer</button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Formulaire d'ajout -->
+    <div class="document-form" *ngIf="showAddForm">
+      <h3>Ajouter un Document</h3>
+      <form #documentForm="ngForm" (ngSubmit)="onAddNewDocument(documentForm)">
+        <input type="text" name="title" [(ngModel)]="document.title" placeholder="Nom du document">
+        <input type="file" (change)="onDocumentFileChange($event)">
+        <button type="submit">Ajouter</button>
+        <button type="button" (click)="closeAddForm()">Annuler</button>
+      </form>
+    </div>
+  </div>
