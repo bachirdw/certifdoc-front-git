@@ -1,0 +1,39 @@
+<div class="dossier-audit-container">
+    <div class="dossier-header">
+      <h2>Liste des Dossiers d'Audit</h2>
+      <button class="add-button" (click)="showAddForm = true">+ Générer un Dossier</button>
+    </div>
+  
+    <table class="dossier-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nom du Dossier</th>
+          <th>Date de Création</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dossier of dossiers">
+          <td>{{ dossier.idDossierAudit }}</td>
+          <td>{{ dossier.nomDossier }}</td>
+          <td>{{ dossier.creationDate | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <button class="action-button view" (click)="selectDossier(dossier)">Voir</button>
+            <button class="action-button delete" (click)="deleteDossier(dossier.idDossierAudit)">Supprimer</button>
+            <button class="action-button download" (click)="downloadDossier(dossier.idDossierAudit)">Télécharger</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="dossier-form" *ngIf="showAddForm">
+      <h3>Générer un Dossier</h3>
+      <form #dossierForm="ngForm" (ngSubmit)="onGenerateDossier(dossierForm.value.documentIds)">
+        <label>Documents requis :</label>
+        <input type="text" name="documentIds" ngModel placeholder="ID des documents, séparés par des virgules">
+        <button type="submit">Générer</button>
+        <button type="button" (click)="showAddForm = false">Annuler</button>
+      </form>
+    </div>
+  </div>

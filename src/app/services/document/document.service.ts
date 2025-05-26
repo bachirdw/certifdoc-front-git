@@ -30,10 +30,10 @@ export class DocumentService {
     public updateDocument(idDocument: number, updatedDocument: Document): Observable<Document> {
       return this.http.put<Document>(`${this.host}/api/documents/${idDocument}`, updatedDocument);
     }
-// Supprimer un document par son ID
-public deleteDocument(idDocument: number): Observable<void> {
-  return this.http.delete<void>(`${this.host}/api/documents/${idDocument}`);
-}
+  // Supprimer un document par son ID
+  public deleteDocument(idDocument: number): Observable<void> {
+    return this.http.delete<void>(`${this.host}/api/documents/${idDocument}`);
+  }
 
 // Rechercher les documents par catégorie
 public getDocumentsByCategorie(idCategorie: number): Observable<Document[]> {

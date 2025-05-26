@@ -1,3 +1,4 @@
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DocumentService } from '../../services/document/document.service';
 import { Document } from '../../models/document/document';
@@ -15,12 +16,12 @@ export class DocumentComponent implements OnInit, OnDestroy {
 
   public documents: Document[] = [];
   public refreshing: boolean = false; // pour indiquer le chargement de la page
-  private subscriptions: Subscription[] = [];
+  private subscriptions: Subscription[] = []; //Suivre et nettoyer les abonnements RxJS
   public selectedDocument: Document | null = null;
   public fileName!: string;
-  public documentFile!: File;
+  public documentFile!: File; //Le fichier à envoyer à l'API
   public showAddForm: boolean = false;
-  public searchText: string = '';
+  public searchText: string = ''; //Texte de recherche pour filtrer les documents
 
   constructor(private documentService: DocumentService) {}
 //  on initialise le composant
@@ -49,8 +50,7 @@ export class DocumentComponent implements OnInit, OnDestroy {
     );
   }
 //methode pour récupérer un document par ID
-  public getDocumentById(idDocument: number): void {
-    
+  public getDocumentById(idDocument: number): void {    
   }
   public SelectDocument(selectedDocument: Document): void {
     this.selectedDocument = selectedDocument;
@@ -124,9 +124,9 @@ public DeleteDocument(documentId?: number): void {
   }
 
   public download(document: Document): void {
-    // Ici, vous pourrez appeler la méthode de téléchargement fournie par votre DocumentService.
+    // on pourra appeler la méthode de téléchargement fournie par votre DocumentService.
     // Par exemple, si votre backend renvoie le fichier ou une URL de téléchargement, adaptez le code.
-    // Pour l'heure, nous affichons une alerte.
+    // Pour l'heure, nous affichons une alerte. 
     alert('Téléchargement du document : ' + document.title);
   }
 

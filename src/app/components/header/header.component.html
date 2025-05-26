@@ -1,0 +1,31 @@
+<header>
+    <!-- Top Header -->
+    <div id="top-header">
+        <ul class="header-links">
+            <li><a href="#"><i class="fas fa-phone"></i> +221 77 123 4567</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> contact.com</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Mon compte</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="brand-logo">
+                <img src="http://localhost:8086/images/logo.png" alt="" class="logo-img">
+                <strong class="logo-text">CertifDoc</strong>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="form-control" placeholder="Rechercher un document...">
+                <button class="search-button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <nav class="nav-links">
+                <a class="nav-item" [routerLink]="['/documents']">Documents</a>
+                <a class="nav-item" [routerLink]="['/DossierAudit']">Génération Dossier</a>
+                <a class="nav-item" [routerLink]="['/utilisateur']">Utilisateurs</a>
+            </nav>
+        </div>
+    </div>
+</header>

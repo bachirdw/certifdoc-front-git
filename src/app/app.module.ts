@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header/header.component';
-import { UserComponent } from './components/user/user.component';
+import { HeaderComponent } from './components/header/header.component';
+import { UserComponent } from './components/utilisateur/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { DocumentComponent } from './components/document/document.component';
+import { DossierAuditComponent } from './components/dossier-audit/dossier-audit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DocumentComponent } from './components/document/document.component';
     HeaderComponent,
     UserComponent,
     RegisterComponent,
-    DocumentComponent
+    DocumentComponent,
+    DossierAuditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,53 @@
+.dossier-audit-container {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .dossier-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dossier-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .dossier-table th, .dossier-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .dossier-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .action-button {
+    padding: 5px 10px;
+    margin: 2px;
+    cursor: pointer;
+  }
+  
+  .view {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .delete {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .download {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .dossier-form {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+  }

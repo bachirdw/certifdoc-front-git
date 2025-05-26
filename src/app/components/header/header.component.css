@@ -1,0 +1,96 @@
+/* Top Header */
+#top-header {
+    background-color: #b53106;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.header-links {
+    list-style: none;
+    padding: 0;
+}
+
+.header-links li {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.header-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-links li i {
+    color: #FFD700;
+    margin-right: 5px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ae2e0b;
+    padding: 15px 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo & Branding */
+.brand-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 50px;
+    width: 50px;
+}
+
+.logo-text {
+    font-size: 28px;
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Barre de recherche */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.form-control {
+    border: none;
+    padding: 8px;
+    width: 250px;
+    font-size: 16px;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #12385B;
+}
+
+/* Navigation */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #FFD700;
+}
