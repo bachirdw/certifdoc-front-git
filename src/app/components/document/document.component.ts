@@ -24,16 +24,16 @@ export class DocumentComponent implements OnInit, OnDestroy {
   public searchText: string = ''; //Texte de recherche pour filtrer les documents
 
   constructor(private documentService: DocumentService) {}
-//  on initialise le composant
+//on initialise le composant
   ngOnInit(): void {
     this.getDocuments();
   }
-  // On détruit le composant
+//on détruit le composant
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  // methode pour récupérer tous les documents
+//methode pour récupérer tous les documents
   public getDocuments(): void {
     this.refreshing = true;
     this.subscriptions.push(

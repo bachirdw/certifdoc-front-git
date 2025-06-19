@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AppSettings } from '../../settings/app.settings';
 import { Document } from '../../models/document/document';
 
+//le design pattern injectable permet d'injecter le service dans les composants
 @Injectable({ providedIn: 'root' })
 export class DocumentService {
   

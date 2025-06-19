@@ -9,11 +9,23 @@ import { CustomHttpResponse } from '../../models/custom-http-response';import { 
   providedIn: 'root'
 })
 export class UserService {
- 
   private host = AppSettings.APP_URL;
 
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
+  // Méthode pour enregistrer un nouvel utilisateur
+  register(user: User): Observable<User> {
+    return this.http.post<User>(`${this.host}/api/auth/register`, user);
+  }
+
+  // Méthode pour se connecter - À CORRIGER
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.host}/api/auth/login`, { 
+      email, 
+      password 
+    }, { observe: 'response' }); // Ajoute observe: 'response' pour avoir les headers
+  }
+
 
   public getUsers() : Observable<User[]> {
     return this.http.get<User[]>(`${this.host}/api/auth/list`);
@@ -35,7 +47,7 @@ export class UserService {
 
   }
 
-
+/*
   //Add user in cache
   public addUsersToLocalCache(users:User[]):void{
     localStorage.setItem('users', JSON.stringify(users));
@@ -52,7 +64,7 @@ export class UserService {
     }
 
   }
-
+*/
   createUserFormData(loggedInUsername: string, user: User, profileImage: File): FormData {
 
     const formData = new FormData();

@@ -11,7 +11,7 @@
   </div>
 
   <!-- Formulaire simple avec ngModel, comme pour le login -->
-  <form (ngSubmit)="onRegisterSubmit()" class="register-form" novalidate autocomplete="on">
+  <form (ngSubmit)="onSubmit()" class="register-form" novalidate autocomplete="on">
     <div class="form-group">
       <label for="firstname">Prénom</label>
       <input type="text" id="firstname" [(ngModel)]="firstname" name="firstname" required>

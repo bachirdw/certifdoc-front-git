@@ -34,7 +34,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.userService.getUsers().subscribe({
         next: (response: User[]) => {
-          this.userService.addUsersToLocalCache(response);
+         // this.userService.addUsersToLocalCache(response);
           this.users = response;
           this.refreshing = false;
         },

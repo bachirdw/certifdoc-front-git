@@ -10,17 +10,20 @@
     <p>Connectez-vous pour commencer</p>
   </div>
 
-  <!-- Formulaire Angular lié au composant -->
-  <form (ngSubmit)="onLoginSubmit()" class="login-form" novalidate autocomplete="on">
+  <!-- Formulaire réactif lié au FormGroup -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" novalidate autocomplete="on">
     <div class="form-group">
-      <label for="Email">Email</label>
+      <label for="email">Email</label>
       <input 
         type="email" 
-        id="Email" 
-        [(ngModel)]="email" 
-        name="email" 
+        id="email" 
+        formControlName="email"
         autocomplete="email" 
         required>
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+        <span *ngIf="email?.errors?.['required']">L'email est requis.</span>
+        <span *ngIf="email?.errors?.['email']">Format d'email invalide.</span>
+      </div>
     </div>
 
     <div class="form-group">
@@ -28,14 +31,16 @@
       <input 
         type="password" 
         id="password" 
-        [(ngModel)]="password" 
-        name="password" 
+        formControlName="password"
         autocomplete="current-password" 
         required>
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+        <span *ngIf="password?.errors?.['required']">Le mot de passe est requis.</span>
+      </div>
     </div>
 
     <div class="form-actions">
-      <button type="submit" class="login-btn" [disabled]="showLoading">Se connecter</button>
+      <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Se connecter</button>
       <a routerLink="/auth/register" class="signup-btn">S'inscrire</a>
     </div>
 
